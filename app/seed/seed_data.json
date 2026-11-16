@@ -1,0 +1,720 @@
+{
+  "documents": [
+    {
+      "id": "q3-financial-report",
+      "name": "Q3-2026-Financial-Report.pdf",
+      "format": "pdf",
+      "sizeBytes": 2480312,
+      "uploadedAt": "2026-10-28T09:14:00Z",
+      "status": "ready",
+      "progress": 100,
+      "chunkCount": 214,
+      "summary": "Quarterly results for Northwind Analytics: revenue, margins, operating costs and Q4 guidance.",
+      "pages": [
+        {
+          "number": 1,
+          "heading": "Executive Summary",
+          "paragraphs": [
+            "Northwind Analytics closed Q3 2026 with total revenue of $48.2M, a 23% increase year-over-year, driven primarily by enterprise subscription expansion across North America and APAC.",
+            "Gross margin improved to 78.4% (up from 74.1% in Q3 2025) following the migration of inference workloads to reserved GPU capacity, which reduced per-query compute cost by 31%.",
+            "Net revenue retention reached 128%, the highest in company history, with 14 customers now exceeding $1M in annual recurring revenue."
+          ]
+        },
+        {
+          "number": 2,
+          "heading": "Revenue Breakdown",
+          "paragraphs": [
+            "Enterprise subscriptions contributed $34.6M (71.8% of total revenue), while self-serve Pro plans generated $9.1M and professional services accounted for the remaining $4.5M.",
+            "APAC was the fastest-growing region at 41% YoY, led by new financial-services customers in Singapore and Sydney. EMEA grew 18%, slightly below plan due to delayed procurement cycles in Germany.",
+            "Average contract value for new enterprise deals rose to $186K, up from $142K in the prior quarter, reflecting stronger attach of the Compliance Vault add-on."
+          ]
+        },
+        {
+          "number": 3,
+          "heading": "Operating Expenses",
+          "paragraphs": [
+            "Total operating expenses were $39.7M. Research & development remained the largest category at $17.3M (43.6%), reflecting continued investment in retrieval quality and multilingual embeddings.",
+            "Sales & marketing spend was $14.2M. Customer acquisition cost payback improved to 14 months, down from 19 months a year earlier.",
+            "General & administrative costs held flat at $8.2M despite 12% headcount growth, aided by automation of the finance close process."
+          ]
+        },
+        {
+          "number": 4,
+          "heading": "Outlook & Risks",
+          "paragraphs": [
+            "For Q4 2026, management guides revenue between $52.0M and $53.5M and expects to reach non-GAAP operating break-even by the end of the fiscal year.",
+            "Key risks include GPU supply constraints, foreign-exchange headwinds from a strengthening USD, and evolving AI regulatory requirements in the EU.",
+            "The board approved a $25M share repurchase program, to be executed opportunistically over the next 18 months."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "employee-handbook",
+      "name": "Employee-Handbook-v4.docx",
+      "format": "docx",
+      "sizeBytes": 864204,
+      "uploadedAt": "2026-10-21T15:42:00Z",
+      "status": "ready",
+      "progress": 100,
+      "chunkCount": 96,
+      "summary": "Company policies covering time off, remote work, equipment and information security.",
+      "pages": [
+        {
+          "number": 1,
+          "heading": "Time Off & Leave",
+          "paragraphs": [
+            "Full-time employees accrue 22 days of paid time off per calendar year, credited monthly. Up to 5 unused days may be carried over into the first quarter of the following year.",
+            "Parental leave is 16 weeks fully paid for all parents, regardless of gender, and may be taken in up to three blocks within 12 months of the birth or adoption.",
+            "Sick leave is unlimited for short-term illness. Absences longer than five consecutive working days require a note from a licensed medical practitioner."
+          ]
+        },
+        {
+          "number": 2,
+          "heading": "Remote Work Policy",
+          "paragraphs": [
+            "Employees may work remotely up to four days per week. Team anchor day is Wednesday, when in-office attendance is expected unless agreed with your manager.",
+            "Working from abroad is permitted for up to 30 days per year, provided the destination is not on the restricted-country list maintained by People Ops.",
+            "A one-time home-office stipend of $750 is available after 60 days of employment, plus a $50 monthly internet allowance."
+          ]
+        },
+        {
+          "number": 3,
+          "heading": "Security & Devices",
+          "paragraphs": [
+            "All company laptops must use full-disk encryption and the managed endpoint agent. Personal devices may only access email and chat through the approved mobile management profile.",
+            "Customer data must never be copied to personal storage, unmanaged cloud drives, or third-party AI tools that are not on the approved vendor list.",
+            "Suspected security incidents must be reported to security@northwind.example within one hour of discovery, even if the impact is unclear."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "payments-api-spec",
+      "name": "payments-api-spec.md",
+      "format": "md",
+      "sizeBytes": 148920,
+      "uploadedAt": "2026-10-30T11:05:00Z",
+      "status": "ready",
+      "progress": 100,
+      "chunkCount": 58,
+      "summary": "REST API reference for the Payments platform: auth, rate limits, webhooks and errors.",
+      "pages": [
+        {
+          "number": 1,
+          "heading": "Authentication",
+          "paragraphs": [
+            "All requests must include a bearer token in the Authorization header. Tokens are issued per tenant via the OAuth 2.0 client-credentials flow and expire after 60 minutes.",
+            "Secret keys are prefixed with sk_live_ or sk_test_. Test-mode keys can only access sandbox resources and never move real funds.",
+            "Rotating a key immediately invalidates the previous secret. Plan rotations during low-traffic windows and deploy the new secret before revoking the old one."
+          ]
+        },
+        {
+          "number": 2,
+          "heading": "Rate Limits",
+          "paragraphs": [
+            "The default limit is 100 requests per second per tenant, with a burst allowance of 200. Search endpoints are limited separately to 20 requests per second.",
+            "When a limit is exceeded the API responds with HTTP 429 and a Retry-After header indicating how many seconds to wait before retrying.",
+            "Clients should implement exponential backoff with jitter, starting at 250ms and capping at 8 seconds between attempts."
+          ]
+        },
+        {
+          "number": 3,
+          "heading": "Webhooks",
+          "paragraphs": [
+            "Webhook events are delivered as signed POST requests. Verify the Payments-Signature header using HMAC-SHA256 with your endpoint's signing secret.",
+            "Failed deliveries are retried up to 12 times over 72 hours using exponential backoff. Endpoints must respond with a 2xx status within 10 seconds.",
+            "Events may arrive out of order or more than once. Use the event id as an idempotency key and fetch the latest object state when ordering matters."
+          ]
+        },
+        {
+          "number": 4,
+          "heading": "Error Handling",
+          "paragraphs": [
+            "Errors return a JSON body containing type, code, message and request_id. Always log the request_id; support uses it to trace requests end to end.",
+            "card_declined and insufficient_funds errors are safe to show to end users. All other error messages are intended for developers and should not be displayed verbatim.",
+            "Idempotency-Key headers are honored for 24 hours on all POST endpoints, so retried requests never create duplicate charges."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vendor-msa",
+      "name": "Vendor-Master-Services-Agreement.pdf",
+      "format": "pdf",
+      "sizeBytes": 1312480,
+      "uploadedAt": "2026-10-12T08:30:00Z",
+      "status": "ready",
+      "progress": 100,
+      "chunkCount": 132,
+      "summary": "Master services agreement with Helix Cloud covering term, SLAs, liability and termination.",
+      "pages": [
+        {
+          "number": 1,
+          "heading": "Term & Renewal",
+          "paragraphs": [
+            "This Agreement commences on the Effective Date and continues for an initial term of thirty-six (36) months.",
+            "Thereafter it renews automatically for successive twelve (12) month periods unless either party gives written notice of non-renewal at least ninety (90) days before the end of the then-current term.",
+            "Pricing for any renewal term may increase by no more than five percent (5%) over the fees applicable in the preceding term."
+          ]
+        },
+        {
+          "number": 2,
+          "heading": "Service Levels",
+          "paragraphs": [
+            "Provider shall maintain monthly uptime of at least 99.95% for production services, excluding scheduled maintenance announced 72 hours in advance.",
+            "If uptime falls below the commitment, Customer is entitled to service credits of 10% of monthly fees for each 0.1% shortfall, capped at 50% of monthly fees.",
+            "Severity 1 incidents require an initial response within 15 minutes and status updates at least every 60 minutes until resolved."
+          ]
+        },
+        {
+          "number": 3,
+          "heading": "Liability & Termination",
+          "paragraphs": [
+            "Except for breaches of confidentiality or indemnification obligations, each party's aggregate liability is limited to the fees paid in the twelve (12) months preceding the claim.",
+            "Either party may terminate for material breach that remains uncured thirty (30) days after written notice describing the breach in reasonable detail.",
+            "Upon termination Provider shall return or destroy all Customer Data within thirty (30) days and certify the destruction in writing upon request."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "product-roadmap-2027",
+      "name": "Product-Roadmap-2027.docx",
+      "format": "docx",
+      "sizeBytes": 642118,
+      "uploadedAt": "2026-11-01T17:20:00Z",
+      "status": "ready",
+      "progress": 100,
+      "chunkCount": 71,
+      "summary": "Planned product themes and milestones for 2027, from agentic workflows to on-prem deployment.",
+      "pages": [
+        {
+          "number": 1,
+          "heading": "Strategic Themes",
+          "paragraphs": [
+            "2027 investment centers on three themes: agentic document workflows, enterprise-grade governance, and a 3× improvement in retrieval latency for collections over 1M chunks.",
+            "We will sunset the legacy keyword-search pipeline by Q2, migrating all tenants to hybrid dense + sparse retrieval with re-ranking.",
+            "Success is measured by weekly active workspaces, answer acceptance rate, and citation click-through rate."
+          ]
+        },
+        {
+          "number": 2,
+          "heading": "Milestones",
+          "paragraphs": [
+            "Q1: multi-document chat and shared workspaces with granular permissions. Q2: workflow builder beta with Slack and Teams triggers.",
+            "Q3: self-hosted deployment on Kubernetes for regulated industries, including bring-your-own-key encryption and air-gapped model serving.",
+            "Q4: native audio and video transcript ingestion with speaker-aware citations."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vector-search-notes",
+      "name": "vector-search-research.txt",
+      "format": "txt",
+      "sizeBytes": 38412,
+      "uploadedAt": "2026-11-04T08:02:00Z",
+      "status": "ready",
+      "progress": 100,
+      "chunkCount": 0,
+      "summary": "Research notes comparing HNSW and IVF-PQ indexes for large tenant collections.",
+      "pages": [
+        {
+          "number": 1,
+          "heading": "Index Benchmarks",
+          "paragraphs": [
+            "HNSW (M=32, efSearch=128) achieved 0.982 recall@10 at 11ms p95 on the 5M-chunk benchmark set, but required 2.4× the memory of IVF-PQ.",
+            "IVF-PQ with 4096 lists and 64-byte codes reached 0.941 recall@10 at 7ms p95. Re-ranking the top 100 with full vectors recovered recall to 0.976.",
+            "Recommendation: HNSW for tenants under 2M chunks, IVF-PQ with re-ranking above that threshold."
+          ]
+        },
+        {
+          "number": 2,
+          "heading": "Chunking Experiments",
+          "paragraphs": [
+            "Semantic chunking with 15% overlap outperformed fixed 512-token windows by 6.3 points on answer faithfulness.",
+            "Keeping section headings as chunk prefixes improved citation precision by 9%, especially in long legal documents.",
+            "Chunks shorter than 80 tokens hurt retrieval quality and should be merged with their nearest sibling."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "onboarding-guide",
+      "name": "customer-onboarding-guide.md",
+      "format": "md",
+      "sizeBytes": 72960,
+      "uploadedAt": "2026-10-05T13:48:00Z",
+      "status": "ready",
+      "progress": 100,
+      "chunkCount": 41,
+      "summary": "Step-by-step guide for onboarding new enterprise customers in their first 30 days.",
+      "pages": [
+        {
+          "number": 1,
+          "heading": "First 30 Days",
+          "paragraphs": [
+            "Day 1: provision the tenant, configure SSO via SAML or OIDC, and invite the customer's workspace admins.",
+            "Week 1: run a guided ingestion session covering at least three priority document collections and validate citation quality together with the customer.",
+            "Day 30: hold a value review measuring query volume, answer acceptance, and time saved against the goals agreed at kickoff."
+          ]
+        },
+        {
+          "number": 2,
+          "heading": "Escalation Paths",
+          "paragraphs": [
+            "Technical blockers go to the Solutions Engineering queue with a target response time of four business hours.",
+            "Commercial questions, including plan changes and invoicing, are owned by the assigned Account Executive.",
+            "Any data-handling concern must be escalated to the Trust team immediately and logged in the compliance tracker."
+          ]
+        }
+      ]
+    }
+  ],
+  "knowledge": {
+    "q3-financial-report": {
+      "suggestions": [
+        "How much revenue did we make in Q3?",
+        "What drove the gross margin improvement?",
+        "What are the key risks in the outlook?"
+      ],
+      "answers": [
+        {
+          "keywords": [
+            "revenue",
+            "make",
+            "made",
+            "growth",
+            "grow",
+            "sales",
+            "total"
+          ],
+          "content": "Northwind closed Q3 2026 with $48.2M in total revenue, up 23% year-over-year [1]. Enterprise subscriptions made up the bulk at $34.6M (71.8%), with Pro plans adding $9.1M and services $4.5M [2]. Growth was strongest in APAC at 41% YoY, while EMEA lagged plan at 18% [3].",
+          "citations": [
+            {
+              "page": 1,
+              "paragraph": 1
+            },
+            {
+              "page": 2,
+              "paragraph": 1
+            },
+            {
+              "page": 2,
+              "paragraph": 2
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "margin",
+            "gross",
+            "compute",
+            "gpu",
+            "cost",
+            "improvement"
+          ],
+          "content": "Gross margin rose to 78.4%, up from 74.1% a year earlier [1]. The improvement came from migrating inference workloads to reserved GPU capacity, which cut per-query compute cost by 31% [1]. Note that GPU supply constraints are also flagged as a forward-looking risk [2].",
+          "citations": [
+            {
+              "page": 1,
+              "paragraph": 2
+            },
+            {
+              "page": 4,
+              "paragraph": 2
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "risk",
+            "risks",
+            "outlook",
+            "guidance",
+            "q4",
+            "forecast",
+            "next quarter"
+          ],
+          "content": "For Q4 2026, management guides revenue of $52.0M–$53.5M and targets non-GAAP operating break-even by fiscal year end [1]. The main risks called out are GPU supply constraints, FX headwinds from a stronger USD, and evolving EU AI regulation [2].",
+          "citations": [
+            {
+              "page": 4,
+              "paragraph": 1
+            },
+            {
+              "page": 4,
+              "paragraph": 2
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "expense",
+            "expenses",
+            "opex",
+            "spend",
+            "r&d",
+            "research",
+            "marketing",
+            "cac"
+          ],
+          "content": "Operating expenses totaled $39.7M, with R&D the largest line at $17.3M (43.6%) [1]. Sales & marketing came in at $14.2M, and CAC payback improved to 14 months from 19 [2]. G&A held flat at $8.2M despite 12% headcount growth [3].",
+          "citations": [
+            {
+              "page": 3,
+              "paragraph": 1
+            },
+            {
+              "page": 3,
+              "paragraph": 2
+            },
+            {
+              "page": 3,
+              "paragraph": 3
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "retention",
+            "nrr",
+            "customers",
+            "churn",
+            "arr",
+            "buyback",
+            "repurchase"
+          ],
+          "content": "Net revenue retention hit 128%, a company record, and 14 customers now exceed $1M in ARR [1]. Separately, the board approved a $25M share repurchase program over the next 18 months [2].",
+          "citations": [
+            {
+              "page": 1,
+              "paragraph": 3
+            },
+            {
+              "page": 4,
+              "paragraph": 3
+            }
+          ]
+        }
+      ]
+    },
+    "employee-handbook": {
+      "suggestions": [
+        "How many PTO days do I get?",
+        "Can I work from another country?",
+        "How do I report a security incident?"
+      ],
+      "answers": [
+        {
+          "keywords": [
+            "pto",
+            "vacation",
+            "time off",
+            "days",
+            "holiday",
+            "carry"
+          ],
+          "content": "Full-time employees accrue 22 days of PTO per year, credited monthly, and up to 5 unused days can roll into Q1 of the next year [1]. Sick leave is separate and unlimited for short-term illness [2].",
+          "citations": [
+            {
+              "page": 1,
+              "paragraph": 1
+            },
+            {
+              "page": 1,
+              "paragraph": 3
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "remote",
+            "abroad",
+            "country",
+            "travel",
+            "home",
+            "office",
+            "stipend"
+          ],
+          "content": "You can work remotely up to four days a week, with Wednesday as the in-office anchor day [1]. Working from abroad is allowed for up to 30 days per year, as long as the destination isn't on the restricted list [2]. There's also a $750 home-office stipend after 60 days [3].",
+          "citations": [
+            {
+              "page": 2,
+              "paragraph": 1
+            },
+            {
+              "page": 2,
+              "paragraph": 2
+            },
+            {
+              "page": 2,
+              "paragraph": 3
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "security",
+            "incident",
+            "report",
+            "breach",
+            "laptop",
+            "device",
+            "ai tools"
+          ],
+          "content": "Report any suspected security incident to security@northwind.example within one hour of discovery, even if the impact is unclear [1]. Also remember that customer data must never be pasted into unapproved third-party AI tools [2].",
+          "citations": [
+            {
+              "page": 3,
+              "paragraph": 3
+            },
+            {
+              "page": 3,
+              "paragraph": 2
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "parental",
+            "maternity",
+            "paternity",
+            "baby",
+            "adoption",
+            "leave"
+          ],
+          "content": "Parental leave is 16 weeks fully paid for every parent, and it can be split into up to three blocks within 12 months of the birth or adoption [1].",
+          "citations": [
+            {
+              "page": 1,
+              "paragraph": 2
+            }
+          ]
+        }
+      ]
+    },
+    "payments-api-spec": {
+      "suggestions": [
+        "What are the API rate limits?",
+        "How do I verify webhook signatures?",
+        "How should I handle retries safely?"
+      ],
+      "answers": [
+        {
+          "keywords": [
+            "rate",
+            "limit",
+            "limits",
+            "429",
+            "throttle",
+            "requests per second"
+          ],
+          "content": "Each tenant gets 100 requests/second with a burst allowance of 200, while search endpoints are capped separately at 20 req/s [1]. Exceeding a limit returns HTTP 429 with a Retry-After header [2], and clients should back off exponentially with jitter from 250ms up to 8s [3].",
+          "citations": [
+            {
+              "page": 2,
+              "paragraph": 1
+            },
+            {
+              "page": 2,
+              "paragraph": 2
+            },
+            {
+              "page": 2,
+              "paragraph": 3
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "webhook",
+            "signature",
+            "verify",
+            "hmac",
+            "signing",
+            "events"
+          ],
+          "content": "Webhooks arrive as signed POSTs; verify the Payments-Signature header with HMAC-SHA256 using your endpoint's signing secret [1]. Since events can be duplicated or arrive out of order, treat the event id as an idempotency key [2].",
+          "citations": [
+            {
+              "page": 3,
+              "paragraph": 1
+            },
+            {
+              "page": 3,
+              "paragraph": 3
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "retry",
+            "retries",
+            "idempotency",
+            "duplicate",
+            "safely",
+            "backoff"
+          ],
+          "content": "Send an Idempotency-Key header on POST requests; keys are honored for 24 hours, so retries never create duplicate charges [1]. Combine this with exponential backoff and jitter between attempts [2].",
+          "citations": [
+            {
+              "page": 4,
+              "paragraph": 3
+            },
+            {
+              "page": 2,
+              "paragraph": 3
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "auth",
+            "authentication",
+            "token",
+            "key",
+            "keys",
+            "oauth",
+            "rotate"
+          ],
+          "content": "Authenticate with a bearer token issued per tenant via OAuth 2.0 client credentials; tokens expire after 60 minutes [1]. When rotating secret keys, deploy the new secret before revoking the old one, because rotation invalidates the previous key immediately [2].",
+          "citations": [
+            {
+              "page": 1,
+              "paragraph": 1
+            },
+            {
+              "page": 1,
+              "paragraph": 3
+            }
+          ]
+        }
+      ]
+    },
+    "vendor-msa": {
+      "suggestions": [
+        "When can we terminate the agreement?",
+        "What is the uptime SLA?",
+        "Does the contract auto-renew?"
+      ],
+      "answers": [
+        {
+          "keywords": [
+            "terminate",
+            "termination",
+            "cancel",
+            "breach",
+            "exit"
+          ],
+          "content": "Either party can terminate for a material breach that remains uncured 30 days after written notice [1]. After termination, the provider must return or destroy all customer data within 30 days [2].",
+          "citations": [
+            {
+              "page": 3,
+              "paragraph": 2
+            },
+            {
+              "page": 3,
+              "paragraph": 3
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "uptime",
+            "sla",
+            "availability",
+            "credits",
+            "incident",
+            "downtime"
+          ],
+          "content": "The provider commits to 99.95% monthly uptime, excluding maintenance announced 72 hours ahead [1]. Shortfalls earn service credits of 10% per 0.1% missed, capped at 50% of monthly fees [2].",
+          "citations": [
+            {
+              "page": 2,
+              "paragraph": 1
+            },
+            {
+              "page": 2,
+              "paragraph": 2
+            }
+          ]
+        },
+        {
+          "keywords": [
+            "renew",
+            "renewal",
+            "auto",
+            "term",
+            "notice",
+            "price increase"
+          ],
+          "content": "Yes. After the initial 36-month term the agreement auto-renews for 12-month periods unless notice is given at least 90 days before term end [1][2]. Renewal pricing can rise by at most 5% [3].",
+          "citations": [
+            {
+              "page": 1,
+              "paragraph": 1
+            },
+            {
+              "page": 1,
+              "paragraph": 2
+            },
+            {
+              "page": 1,
+              "paragraph": 3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "fallbackAnswer": {
+    "keywords": [],
+    "content": "I couldn't find a passage that answers that directly, so here is the closest match. The opening section sets out the document's main context [1], and the following section adds supporting detail [2]. Try rephrasing with terms that appear in the document for a more precise answer.",
+    "citations": [
+      {
+        "page": 1,
+        "paragraph": 1
+      },
+      {
+        "page": 2,
+        "paragraph": 1
+      }
+    ]
+  },
+  "defaultSuggestions": [
+    "Summarize this document",
+    "What are the key sections?",
+    "What should I verify first?"
+  ],
+  "initialChats": {
+    "q3-financial-report": [
+      {
+        "id": "seed-user-1",
+        "role": "user",
+        "content": "Give me the headline numbers for this quarter.",
+        "citations": []
+      },
+      {
+        "id": "seed-assistant-1",
+        "role": "assistant",
+        "content": "Headline: revenue of $48.2M, up 23% YoY [1], gross margin of 78.4% [2], and record net revenue retention of 128% [3]. Click any citation to jump to the exact passage.",
+        "citations": [
+          {
+            "page": 1,
+            "paragraph": 1
+          },
+          {
+            "page": 1,
+            "paragraph": 2
+          },
+          {
+            "page": 1,
+            "paragraph": 3
+          }
+        ]
+      }
+    ]
+  }
+}
